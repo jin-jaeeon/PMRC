@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fourth.sproject.board.BoardMapper">
+	<select id="getPost"
+	parameterType="com.fourth.sproject.board.PostSelector"
+	resultType="com.fourth.sproject.board.Post">
+	<!-- 
+		1. 최종적으로 화면에 보여줄 것은 게시글 번호, 제목, 작성자, 작성일, 조회수
+	-->
+		select pb_no, pb_writer, pb_title, pb_count, pb_date
+		from (
+			select *
+			from (
+				select rownum as rn, pb_no, pb_writer, pb_title, pb_count, pb_date
+				from (
+					select * from pmrc_board
+					where pb_writer like '%'||#{search}||'%' or pb_title like '%'||#{search}||'%'
+					order by pb_date desc
+				)
+			)
+			where rn &gt;= #{start} and rn &lt;= #{end}
+		)
+		order by pb_date desc
+		
+	</select>
+	<update id="addClickCount" parameterType="java.math.BigDecimal">
+		update pmrc_board
+		set pb_count = pb_count+1
+		where pb_no = #{pageDetail}
+		
+	</update>
+	
+	<!-- 
+		
+	-->
+	<select id="getPostCount" 
+		parameterType="com.fourth.sproject.board.PostSelector"
+		resultType="java.lang.Integer">
+		select count(*) 
+		from pmrc_board
+		where pb_writer like '%'||#{search}||'%' or pb_content like '%'||#{search}||'%'
+	</select>
+	<!-- 
+		
+	-->
+	<select id="getPostCountByWriter"
+		parameterType="com.fourth.sproject.member.Member"
+		resultType="java.lang.Integer">
+		select count(*) 
+		from pmrc_board
+		where pb_writer = #{p_user}
+	</select>
+	
+	<insert id="writePost" parameterType="com.fourth.sproject.board.Post">
+		insert into pmrc_board(pb_no, pb_title, pb_content, pb_writer)
+		values(pmrc_board_seq.nextval, #{pb_title}, #{pb_content}, #{pb_writer})
+	</insert>
+	
+	<select id="getDetailByID" parameterType="com.fourth.sproject.board.PostDetailH" resultType="com.fourth.sproject.board.Post">
+		select * from pmrc_board, project_user where pb_no = #{pb_no} and pb_writer like p_user
+	</select>
+
+
+	<select id="getLastPost" parameterType="com.fourth.sproject.board.LastPostDetailHH" resultType="com.fourth.sproject.board.Post">
+		select * 
+		from (
+			select rownum as rn, pb_no, pb_title, pb_writer, pb_content, pb_date
+			from ( select *
+			from pmrc_board, project_user 
+			where p_user like '%'||#{pb_writer}||'%' 
+			order by pb_date desc
+		)
+	)
+	where rn=1
+	</select>
+	 
+	<delete id="deletePost" parameterType="com.fourth.sproject.board.Post" >
+	delete from pmrc_board where pb_no = #{pb_no}
+	</delete>
+	
+	<update id="update" parameterType="com.fourth.sproject.board.Post">
+	update pmrc_board set pb_title = #{pb_title}, pb_content= #{pb_content} where pb_no = #{pb_no}
+	</update>
+	
+	<insert id="writeReply" parameterType="com.fourth.sproject.board.PostReply">
+		insert into pmrc_sns_reply
+		values(pmrc_sns_reply_seq.nextval, #{psr_ps_no}, #{psr_writer}, #{psr_txt}, sysdate, #{psr_file})
+	</insert>
+	
+	<select id="getPostReplyH" parameterType="com.fourth.sproject.board.PostDetailH" resultType="com.fourth.sproject.board.PostReply">
+		select * from pmrc_sns_reply where psr_ps_no like '%'||#{pb_no}||'%' order by psr_date
+	</select>
+	
+	
+</mapper>

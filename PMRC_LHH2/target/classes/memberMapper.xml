@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fourth.sproject.member.MemberMapper">
+	<insert id="join" parameterType="com.fourth.sproject.member.Member">
+		insert into project_user 
+		values(#{p_user}, #{p_password},#{p_name},#{p_grade},#{p_photo},#{p_birthday})
+	</insert>
+	<select id="getMemberByID" parameterType="com.fourth.sproject.member.Member" resultType="com.fourth.sproject.member.Member">
+		select * from project_user where p_user = #{p_user}
+	</select>
+	<select id="getMemberByName" parameterType="com.fourth.sproject.member.Member" resultType="com.fourth.sproject.member.Member">
+		select * from project_user where p_name = #{p_name}
+	</select>
+	<delete id="bye" parameterType="com.fourth.sproject.member.Member" >
+	delete from project_user where p_user = #{p_user}
+	</delete>
+	<update id="update" parameterType="com.fourth.sproject.member.Member">
+	update project_user set p_password = #{p_password}, p_photo= #{p_photo} where p_user = #{p_user}
+	</update>
+</mapper>

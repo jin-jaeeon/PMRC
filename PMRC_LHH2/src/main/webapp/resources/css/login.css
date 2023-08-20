@@ -1,0 +1,140 @@
+@charset "UTF-8";
+
+
+@font-face {
+     font-family: 'S-CoreDream-3Light';
+     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+     font-weight: normal;
+     font-style: normal;
+}
+
+body {
+	font-family: 'S-CoreDream-3Light';
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;	
+}
+a {
+	text-decoration: none;
+	
+}
+.anotherLogin {
+	width: 30px;
+	height: 30px;
+	border-radius: 10px;
+}
+.tdNav{
+	text-align: center;	
+}
+
+.tdInput {
+	text-align: center;	
+	width: 220px;
+	height: 30px;
+	font-size: 14px;
+	border-radius: 8px;
+	border: none;
+}
+.tdInput:focus {
+	background-color: gray;
+	box-shadow: none;
+	outline: none;
+	transition : background-color 0.2s ease;
+}
+
+.formTitle {
+	font-size: 24px;
+	line-height: 1.75rem;
+	font-weight: 600;
+	text-align: center;
+	color: #000;
+}
+.linkHover:hover{
+	color: #424242;
+	transition: color 0.1s ease;
+}
+.linkHover{
+	color: black;
+}
+.loginTblLinkBoxInnerBox{
+	display:flex;
+	width: 33.3%;
+	justify-content: center;
+	align-items: center;
+}
+#loginTblLinkBox{
+	width:100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+#loginBtn{
+  appearance: none;
+  background-color: #000000;
+  border: 2px solid #1A1A1A;
+  border-radius: 15px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: normal;
+  margin: 0;
+  min-height: 35px;
+  min-width: 0;
+  outline: none;
+  padding: 16px 24px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 50%;
+  will-change: transform;
+}
+
+
+#loginBtn:hover {
+  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+  transform: translateY(-2px);
+}
+
+
+
+#loginBtn:active {
+  box-shadow: none;
+  transform: translateY(0);
+
+}
+
+#outerBox {
+	display: flex;
+	height: 100%;
+	justify-content: center;
+	align-content: center;
+  	align-items: center;
+ 	background-color: #000000; 	
+}
+#loginBox {
+	border-spacing: 0;
+	border-collapse:collapse;
+	border-radius:10px;
+	border-style:hidden;
+	background-color: #D1C4E999;
+	width: 300px;
+	height: 250px;
+	padding: 10px;
+	font-size: 12px;
+	font-weight: 600;
+}
+
+#popupBtn:hover{
+	color: #424242;
+	transition: color 0.1s ease;
+	cursor:pointer;
+}
+
+

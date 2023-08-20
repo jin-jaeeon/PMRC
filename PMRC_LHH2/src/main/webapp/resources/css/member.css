@@ -1,0 +1,73 @@
+@charset "UTF-8";
+
+.loginInput{
+	background-color: transparent;
+	border: white solid 3px;
+	color: white;
+	width: 150px;
+	height: 20px;
+	text-align: center;
+	
+}
+
+.loginBtn{
+	background-color: transparent;
+	border: none;
+	width: 80px;
+	height: 20px;
+	text-align: center;
+	font-size: 15px;
+	color: white;
+	
+}
+
+#memberInfoTbl{
+	width: 700px;
+	height:700px;
+	font-size: 15pt;
+}
+
+#memberInfoTbl th, th{
+	font-size: 30pt;
+	height: 80px;
+}
+#memberInfoTbl input {
+	width: 550px;
+	height: 45px;
+	font-size: 15pt;
+	border:black solid 3px;
+	padding: 5px;
+}
+#memberInfoTbl select{
+	width: 140px;
+	height: 45px;
+	font-size: 15pt;
+	border:black solid 3px;
+	padding: 5px;
+}
+#joinTbl .subTitle{
+	padding-top:25px;
+}
+#joinTbl button {
+	border:none;
+	background-color: transparent;
+	font-size: 30pt;
+}
+
+#welcomeTbl{
+	width: 30%;
+}
+#welcomeTbl .imgTd{
+	width: 80px;	
+}
+#welcomeTbl img{
+	max-width: 70px;
+}
+
+#memberInfoImg{
+	max-width: 30%;
+}
+
+#movieTbl img{
+	max-height: 250px;
+}

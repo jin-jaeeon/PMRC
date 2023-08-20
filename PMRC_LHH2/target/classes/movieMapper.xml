@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fourth.sproject.movie.MovieMapper">
+	
+	<select id="getMovieByID" parameterType="com.fourth.sproject.movie.MovieSelector" resultType="com.fourth.sproject.movie.Movie">
+		select * from project_movie where pm_name like '%'||#{search}||'%'
+	</select>
+
+	<select id="getMovieByCode" parameterType="com.fourth.sproject.movie.MovieDetailSelector" resultType="com.fourth.sproject.movie.Movie">
+		select * from project_movie where pm_code like '%'||#{pm_code}||'%'
+	</select>
+
+	<select id="getMovieReply" parameterType="com.fourth.sproject.movie.MovieDetailSelector" resultType="com.fourth.sproject.movie.MovieReply">
+		select * from project_movie_review where pmr_pm_code like '%'||#{pm_code}||'%' order by pmr_date
+	</select>
+
+	<insert id="writeReply" parameterType="com.fourth.sproject.movie.MovieReply">
+		insert into project_movie_review
+		values(pmrc_movie_reply_seq.nextval, #{pmr_pm_code}, #{pmr_writer}, #{pmr_grade}, sysdate, #{pmr_txt})
+	</insert>
+	
+	
+<!-- 	<select id="getMovieByDirector" parameterType="com.fourth.sproject.movie.Movie" resultType="com.fourth.sproject.movie.Movie">
+		select * from project_movie where pm_director like '%'||#{search}||'%'
+	</select>
+		
+	<select id="getMovieByGenre" parameterType="com.fourth.sproject.movie.Movie" resultType="com.fourth.sproject.movie.Movie">
+		select * from project_movie where pm_genre = #{pm_genre}
+	</select>
+	 -->
+	 
+	 <select id="getMovieCount" 
+		parameterType="com.fourth.sproject.movie.MovieSelector"
+		resultType="java.lang.Integer">
+		select count(*) 
+		from project_movie
+		where pm_name like '%'||#{search}||'%'
+	</select>
+
+	 <select id="getAllMovieCount" 
+		resultType="java.lang.Integer">
+		select count(*) 
+		from project_movie
+	</select>
+	 
+	 	<select id="getMovie"
+	parameterType="com.fourth.sproject.movie.MovieSelector"
+	resultType="com.fourth.sproject.movie.Movie">
+		select pm_code, pm_pyear, pm_name, pm_genre, pm_director, pm_acc, pm_url
+		from (
+			select *
+			from (
+				select rownum as rn, pm_code, pm_pyear, pm_name, pm_genre, pm_director, pm_acc, pm_url
+				from (
+					select * from project_movie
+					where pm_name like '%'||#{search}||'%' 
+					order by pm_pyear desc
+				)
+			)
+			where rn &gt;= #{start} and rn &lt;= #{end}
+		)
+		order by pm_pyear desc
+		
+	</select>
+	 
+	 <select id="get" resultType="com.fourth.sproject.movie.Movie">
+		select pm_name, pm_pyear, pm_genre, pm_director, pm_acc, pm_url, pm_code
+		from (
+			select *
+			from (
+				select rownum as rn, pm_name, pm_pyear, pm_genre, pm_director, pm_acc, pm_url, pm_code
+				from (
+					select * from project_movie
+					order by pm_acc desc
+				)
+			)
+			where rn &gt;= 1 and rn &lt;= 10
+		)
+		order by pm_acc desc 
+	</select>
+	 
+	 <select id="search" parameterType="com.fourth.sproject.movie.Movie" resultType="com.fourth.sproject.movie.Movie">
+		select pm_name, pm_pyear, pm_genre, pm_director, pm_acc, pm_url, pm_code
+		from (
+			select *
+			from (
+				select rownum as rn, pm_name, pm_pyear, pm_genre, pm_director, pm_acc, pm_url, pm_code
+				from (
+					select * from project_movie
+					where pm_genre like '%'||#{pm_genre}||'%'
+					order by pm_acc desc
+				)
+			)
+			where rn &gt;= 1 and rn &lt;= 10
+		)
+		order by pm_acc desc 
+	</select>
+	 
+</mapper>

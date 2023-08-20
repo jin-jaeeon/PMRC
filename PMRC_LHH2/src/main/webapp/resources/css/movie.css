@@ -1,0 +1,116 @@
+@charset "UTF-8";
+
+
+#movieInfoOuterBox{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+#movieCurrentPageNum{
+	font-size:20px;
+	color: #fff;
+	padding: 0 7px;
+}
+#movieInfoImgBox2{
+	display: flex;
+	flex-direction: column;
+	width: 50%;
+	height: 120%;
+	border-radius: 5px;
+	background-color: #151515;
+}
+#movieSearchBox{
+	margin-bottom: 10px;
+}
+#movieInfoImgBox{
+	width:100%;
+	height: 90%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+#movieDetailTbl{
+	color: #fff;
+	width: 100%;
+}
+#movieDetailTbl tr{
+	width: 100%;
+}
+#movieDetailOuterBox{
+	background-color: rgba(255,255,255,0.3);
+	border-radius:5px;
+	width: 33.3%;
+}
+#movieReviewNav{
+	background-color: #2E2E2E;
+}
+.movieStarNum{
+	width: 10%;
+}
+.movieInfoPoster{
+	width:50%;
+	display:flex;
+	justify-content: center;
+	align-items: center;
+}
+.movieInfoPoster img{
+	margin-top: 10px;
+}
+.movieInfoTxt{
+	display:flex;
+	justify-content: center;
+	flex-direction: column;
+	color: #fff;
+	width: 50%;
+}
+.innerMovieInfoBox{
+	display: flex;
+	width: 100%;
+	padding-top: 20px;
+}
+.movieInfoDetail{
+	justify-content:center;
+	align-items:center;
+	flex-direction:column;
+	display: flex;
+	margin: 0;
+	width: 100%;
+}
+.movieInfoDetail2{
+	justify-content:center;
+	align-items:center;
+	display: flex;
+	margin: 0;
+	width: 100%;
+}
+.movieInfoTxtNav{
+	margin-top: 5px;
+}
+.moviePageMoveBtn{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.moviePageMoveBtn a{
+	color: #E6EE9C;
+	font-size: 30px;
+}
+.movieInfoTxt2{
+	margin-top: 3px;
+	margin-bottom: 3px;
+}
+.movieInfoTxt2 a{
+	color: white;
+}
+.movieInfoTxt2 a:hover{
+	color: black;
+}
+.moviePagingBtn:hover{
+	color: #2E2E2E;
+}
+
+#movieCountBox{
+	color: white;
+	
+}
